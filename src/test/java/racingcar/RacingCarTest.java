@@ -13,8 +13,7 @@ public class RacingCarTest {
         InputView inputView = new InputView("Mark,Jaehyun,Johnny", "7");
 
         //when
-        RacingCar.ready(inputView);
-        RacingCar racingCar = new RacingCar(inputView);
+        RacingCar racingCar = RacingCar.ready(inputView);
         while (racingCar.isNotEnd()) {
             racingCar.start();
         }

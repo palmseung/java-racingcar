@@ -12,14 +12,16 @@ public class OutputView {
     private static final String ONE_MOVE = "-";
     private static final String DELIMITER_FOR_WINNERS = ",";
     private static final int FIRST_TRY_COUNT = 1;
+    private static int tryCount = FIRST_TRY_COUNT;
 
     public static void printCurrentPosition(RacingCar racingCar) {
         printResultTitle(racingCar);
-        printTryCount(racingCar.getCurrentCount());
+        printTryCount(tryCount);
         for (Car car : racingCar.getCars()) {
             printPrettierName(car, racingCar);
             printCurrentPositionOfOneCar(car.getPosition());
         }
+        tryCount++;
         printBottomLine(racingCar);
     }
 

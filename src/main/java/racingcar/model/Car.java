@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Car {
     private String name;
     private int position = 0;
+    private RandomRunnable randomRunnable = new RandomRunnable();
 
     public Car(String name) {
         this.name = name;
@@ -18,7 +19,7 @@ public class Car {
     }
 
     public void move() {
-        move(new RandomRunnable().isRunnable());
+        move(randomRunnable.isRunnable());
     }
 
     public void move(boolean isRunnable) {

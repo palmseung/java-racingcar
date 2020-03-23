@@ -12,29 +12,27 @@ import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 public class RacingCar {
-    private int tryCount;
-    private int currentCount = 0;
-    private static Cars cars;
+    private static int currentCount;
+    private static int NUMBER_TO_STOP_RUNNING = 0;
+
+    private Cars cars;
     private Result result;
 
-    public RacingCar(InputView inputView) {
-        this.tryCount = inputView.getTryCount();
+    public RacingCar(Cars cars) {
+        this.cars = cars;
     }
 
     public static RacingCar ready(InputView inputView) {
-        cars = inputView.getCarNames().stream()
+        Cars cars = inputView.getCarNames().stream()
                 .map(Car::new)
                 .collect(collectingAndThen(toList(), Cars::new));
-        return new RacingCar(inputView);
+        currentCount = inputView.getTryCount();
+        return new RacingCar(cars);
     }
 
     public void start() {
         this.result = cars.moveOnce();
-        this.currentCount++;
-    }
-
-    public Winners findWinners() {
-        return new Winners(cars.findWinner());
+        this.currentCount--;
     }
 
     public List<Car> getCars() {
@@ -49,7 +47,11 @@ public class RacingCar {
         return findWinners().getWinners();
     }
 
+    private Winners findWinners() {
+        return new Winners(cars.findWinner());
+    }
+
     public boolean isNotEnd() {
-        return this.tryCount > this.currentCount;
+        return this.currentCount > NUMBER_TO_STOP_RUNNING;
     }
 }
