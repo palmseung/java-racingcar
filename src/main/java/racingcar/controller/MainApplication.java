@@ -1,6 +1,6 @@
-package racingcar;
+package racingcar.controller;
 
-import racingcar.controller.RacingCar;
+import racingcar.model.RacingCar;
 import racingcar.view.InputProcessor;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
